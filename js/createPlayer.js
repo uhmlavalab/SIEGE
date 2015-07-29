@@ -47,33 +47,35 @@ function createPlayer(shootingDirection) {
 	used to shoot bullets.
 	*/
 	ent.shoot = function () {
-		var d = new Date();
-		var currentTime = d.getTime();
-		//if the player is allowed to shoot more shots
-		if (this.counterShoot < this.maxShootBullets) {
-			//find an avaiable bullet, one where isAlive is false
-			for (var i = 0; i < this.allBullets.length; i++) {
-				if(this.allBullets[i].isAlive) {
-					//will do nothing if the found bullet isAlive
-					} else if (this.shootingDirection == "right") {//spawns bullet for left player
-						if((currentTime - previousTimeA) > 500) {
+		if (this.isAlive) {
+			var d = new Date();
+			var currentTime = d.getTime();
+			//if the player is allowed to shoot more shots
+			if (this.counterShoot < this.maxShootBullets) {
+				//find an avaiable bullet, one where isAlive is false
+				for (var i = 0; i < this.allBullets.length; i++) {
+					if(this.allBullets[i].isAlive) {
+						//will do nothing if the found bullet isAlive
+						} else if (this.shootingDirection == "right") {//spawns bullet for left player
+							if((currentTime - previousTimeA) > 500) {
+								this.allBullets[i].isAlive = true;
+								this.allBullets[i].spawnAt(this.x + this.width/2 + 1 + cBulletWidth, this.y);
+								//this.counterShoot++;
+								previousTimeA = currentTime;
+								console.log('confirm right shot');
+							}
+						} else if (this.shootingDirection == "left") {//spawns bullet for right player
+						if((currentTime - previousTimeB) > 500) {
 							this.allBullets[i].isAlive = true;
-							this.allBullets[i].spawnAt(this.x + this.width/2 + 1 + cBulletWidth, this.y);
+							this.allBullets[i].spawnAt(this.x - this.width/2 - 1 - cBulletWidth, this.y);
 							//this.counterShoot++;
-							previousTimeA = currentTime;
-							console.log('confirm right shot');
+							previousTimeB = currentTime;
+								console.log('confirm left shot');
 						}
-					} else if (this.shootingDirection == "left") {//spawns bullet for right player
-					if((currentTime - previousTimeB) > 500) {
-						this.allBullets[i].isAlive = true;
-						this.allBullets[i].spawnAt(this.x - this.width/2 - 1 - cBulletWidth, this.y);
-						//this.counterShoot++;
-						previousTimeB = currentTime;
-							console.log('confirm left shot');
-					}
+					};
 				};
 			};
-		};
+		}
 	}
 	/**
 	controls movement for the player
@@ -115,6 +117,7 @@ function createPlayer(shootingDirection) {
 		this.isAlive = false;//set isAlive to false
 		//ent.speed = 0;//set speed to 0 //why is speed getting killed?
 		this.direction = "none";//set direction to none
+		explodeEntity(this.vSprite);
 		//remove sprite code here
 	};
 

@@ -93,7 +93,7 @@ function createEntity() {
 //This function should receive a Sprite as parameter
 function explodeEntity(ref){
 	var explosion_image = new Image();
-	explosion_image.src = '../assets/explosion_2.png';
+	explosion_image.src = 'assets/explosion_2.png';
 
 	var anim = {
 		explosion: [
@@ -118,6 +118,7 @@ function explodeEntity(ref){
 	ref.image(explosion_image);
 	ref.animation('explosion');
 	ref.animations(anim);
+	ref.frameRate(10);
 
 	ref.start();
 
@@ -125,7 +126,7 @@ function explodeEntity(ref){
 		console.log('destroy');
 
 		var empty_image = new Image();
-		empty_image.src = '../assets/empty.png';
+		empty_image.src = 'assets/empty.png';
 
 		var empty_anim = {
 			empty: [
