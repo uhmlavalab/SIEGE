@@ -158,8 +158,8 @@ function setupGameVisuals() {
     for (var i = 0; i < totalSuicideInvaders; i++) {
         var suicideInvader = createInvader(2, '');
         suicideInvader.isAlive = false;
-        allInvaders.push(suicideInvader);
-        //agv['invGroup' + i] = allInvaders[ allInvaders.length - 1].vGroup;
+        allSuicider.push(suicideInvader);
+        agv['suiGroup' + i] = allSuicider[ allSuicider.length - 1].vGroup;
     }
 
 

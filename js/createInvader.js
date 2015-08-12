@@ -49,7 +49,8 @@ function createInvader(invadeType, shootingDirection) {
 			invaderMoveAI();
 		}
 		else if (this.invaderType == 2) {
-			//suicideInvaderAI.call(ent);
+			suicideInvaderAI();
+            console.log("moving suicide");
 		}
 		this.moveVisualsToCoordinates();
 	};
@@ -65,18 +66,27 @@ function createInvader(invadeType, shootingDirection) {
 	ent.death = function () {
 		this.isAlive = false;//set isAlive to false
 		if(this.invaderType == 1) {//if the invader that was killed was a normal invader
-        console.log(allInvaders);
+        
 			//if(Math.random() < .15) {//and if it hits the 15% chance of spawning a suicide invader
-				for (var i = 0; i < allInvaders.length; i++) {
-                    if (allInvaders[i].invaderType === 2) {
-                        if (allInvaders[i].isAlive === false) {
-                            allInvaders[i].isAlive = true;
-                            allInvaders[i].x = this.x;
-                            allInvaders[i].y = this.y;
-                            allInvaders[i].direction = this.shootingDirection;
-                            allInvaders[i].spawnAt(100, 100);
+				for (var i = 0; i < allSuicider.length; i++) {
+                    
+                    if (allSuicider[i].isAlive === false) {
+                        allSuicider[i].isAlive = true;
+                        allSuicider[i].x = this.x;
+                        allSuicider[i].y = this.y;
+                        allSuicider[i].shootingDirection = this.shootingDirection;
+                        if (this.shootingDirection === 'left') {
+                            allSuicider[i].moveDirection = -1;
                         }
+                        else if (this.shootingDirection === 'right') {
+                            allSuicider[i].moveDirection = 1;
+                        }
+                        allSuicider[i].moveVisualsToCoordinates();
+                        createInvaderVisual(allSuicider[i]);
+                        console.log(allSuicider);
+                        break;
                     }
+                    
                 }
 			//}
 		}
@@ -118,23 +128,43 @@ function createInvader(invadeType, shootingDirection) {
 function createInvaderVisual(ref){
 	ref.vGroup = new Konva.Group();
 
-	ref.vSprite = new Konva.Sprite({
-		x: -cInvaderWidth/2,
-		y: -cInvaderHeight/2,
-		width: cInvaderWidth,
-		height: cInvaderHeight,
-		image: allSpriteObjects['enemy1'],
-		animation: 'idle',
-		animations: {
-			idle: [
-				0,0,32,32,
-				32,0,32,32
-			]
-		},
-		frameRate: 8,
-		frameIndex: 0
-	});
-
+    
+    if (ref.invaderType === 2) {
+    	ref.vSprite = new Konva.Sprite({
+            x: -cInvaderWidth/2,
+            y: -cInvaderHeight/2,
+            width: cInvaderWidth,
+            height: cInvaderHeight,
+            image: allSpriteObjects['enemy2'],
+            animation: 'idle',
+            animations: {
+                idle: [
+                    0,0,32,32,
+                    32,0,32,32
+                ]
+            },
+            frameRate: 8,
+            frameIndex: 0
+        });
+    }
+    else if (ref.invaderType === 1) {
+        ref.vSprite = new Konva.Sprite({
+            x: -cInvaderWidth/2,
+            y: -cInvaderHeight/2,
+            width: cInvaderWidth,
+            height: cInvaderHeight,
+            image: allSpriteObjects['enemy1'],
+            animation: 'idle',
+            animations: {
+                idle: [
+                    0,0,32,32,
+                    32,0,32,32
+                ]
+            },
+            frameRate: 8,
+            frameIndex: 0
+        });
+    }
 	ref.vGroup.add(ref.vSprite);
 
 	// if(debug) {
@@ -222,8 +252,14 @@ function invaderMoveAI() {
 /**
  *  AI for suicide invaders.
  */
-function suicideInvaderAI(alien) {
-
+function suicideInvaderAI() {
+    for (var i = 0; i < allSuicider.length; i++) {
+        var suicide = allSuicider[i];
+        if (suicide.isAlive === true) {
+            suicide.x += 10 * suicide.moveDirection;
+            console.log(suicide.x);
+        }
+    }
 }
 
 

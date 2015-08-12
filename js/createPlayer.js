@@ -21,7 +21,7 @@ function createPlayer(shootingDirection) {
 	ent.y = -100;//the defualt y ordinance of entity
 	ent.width = cPlayerWidth;//How wide the entity is
 	ent.height = cPlayerHeight;//How tall the entity is 
-	ent.speed = 20;//movement speed
+	ent.speed = 10;//movement speed
 	ent.hp = 1;//For now everything will have 1 hp
 	ent.type = "player";//this names what sort of entity, such as player or bullet
 	ent.shootingDirection = shootingDirection;
@@ -30,7 +30,6 @@ function createPlayer(shootingDirection) {
 	isAlive = true;//Are you still alive bro?
 	ent.intervalShoot = 500; //milliseconds
 	ent.counterShoot = 0;
-	ent.speed = 3;
 	ent.maxShootBullets = 1;
 	var previousTimeA = 0;
 	var previousTimeB = 0;

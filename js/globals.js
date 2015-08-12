@@ -98,6 +98,7 @@ var allSpriteObjects = null;
 //data structures
 var allPlayers 	= [];
 var allInvaders = [];
+var allSuicider = [];
 var allEntities = [];
 var leaderBoard = [ 
 	                { 
