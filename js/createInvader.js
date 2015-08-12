@@ -192,14 +192,11 @@ function invaderMoveAI() {
         maxY = Math.max(maxY, alien.y);
         minY = Math.min(minY, alien.y);
     }
-    //console.log("Min Y: " + minY + ", Max Y: " + maxY);
+    console.log("Min Y: " + minY + ", Max Y: " + maxY);
     
     // Determines if any of the invaders are going beyond the 30px margin
-    if (maxY > cCanvasHeight - cInvaderHeight || minY < cInvaderHeight * 1.5 ) {
+    if (maxY >= cCanvasHeight - cInvaderHeight || minY <= cInvaderHeight * 1.5 ) {
         for (var i = 0; i < allInvaders.length; i++) {
-            if (alien.isAlive === false) {
-                continue;
-            }
             allInvaders[i].moveDirection = allInvaders[i].moveDirection * -1;
             allInvaders[i].y += allInvaders[i].height * (allInvaders[i].moveDirection);
             if (allInvaders[i].x > cCanvasWidth/2) {
@@ -249,8 +246,14 @@ function shootingAI() {
                     else if (shootingAlien.shootingDirection == "right") {
                         shootingAlien.allBullets[i].isAlive = true;
                         shootingAlien.allBullets[i].spawnAt(shootingAlien.x + shootingAlien.width/2 + 1 + cBulletWidth, shootingAlien.y);
-                        console.log("Alien shot right: " + shootingAlien.shootingDirection +  ", Bullet: " + shootingAlien.allBullets[i].moveDirection);
-                        console.log("A X: " + shootingAlien.x + ", B X: " + shootingAlien.allBullets[i].x);
+                        //console.log("Alien shot right: " + shootingAlien.shootingDirection +  ", Bullet: " + shootingAlien.allBullets[i].moveDirection);
+                        //console.log("A X: " + shootingAlien.x + ", B X: " + shootingAlien.allBullets[i].x);
+                    }
+                    else if (shootingAlien.shootingDirection == "left") {
+                        shootingAlien.allBullets[i].isAlive = true;
+                        shootingAlien.allBullets[i].spawnAt(shootingAlien.x + shootingAlien.width/2 + 1 + cBulletWidth, shootingAlien.y);
+                        //console.log("Alien shot left: " + shootingAlien.shootingDirection +  ", Bullet: " + shootingAlien.allBullets[i].moveDirection);
+                        //console.log("A X: " + shootingAlien.x + ", B X: " + shootingAlien.allBullets[i].x);
                     }
                 }
             }

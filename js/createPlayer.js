@@ -26,6 +26,7 @@ function createPlayer(shootingDirection) {
 	ent.type = "player";//this names what sort of entity, such as player or bullet
 	ent.shootingDirection = shootingDirection;
 	ent.moveDirection = 'none';//up & down?
+    ent.score = 0;//+1 for kills
 	isAlive = true;//Are you still alive bro?
 	ent.intervalShoot = 500; //milliseconds
 	ent.counterShoot = 0;

@@ -96,6 +96,7 @@ function explodeEntity(ref){
 	var explosion_image = new Image();
 	explosion_image.src = 'assets/explosion_2.png';
 
+	/*
 	var anim = {
 		explosion: [
 			0, 0, 76, 76,
@@ -115,6 +116,28 @@ function explodeEntity(ref){
 
 		]
 	};
+	*/
+
+	var anim = {
+		explosion: [
+			0, 0, 38, 38,
+			38, 0, 38, 38,
+			76, 0, 38, 38,
+			114, 0, 38, 38,
+			152, 0, 38, 38,
+			190, 0, 38, 38,
+			228, 0, 38, 38,
+			266, 0, 38, 38,
+			304, 0, 38, 38,
+			342, 0, 38, 38,
+			380, 0, 38, 38,
+			418, 0, 38, 38,
+			456, 0, 38, 38,
+			494, 0, 38, 38
+
+		]
+	};
+
 
 	ref.image(explosion_image);
 	ref.animation('explosion');

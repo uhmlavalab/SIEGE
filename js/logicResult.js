@@ -14,6 +14,7 @@ function logicResult() {
                     leaderBoard[k + 1] = leaderBoard[k];
                 }
                 leaderBoard[j].score = allPlayers[i].score;
+                //leaderBoard[j].name = userinput?
             }
         }
     }
