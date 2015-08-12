@@ -68,6 +68,9 @@ function setupSpriteImageObjects() {
 
 	allSpriteObjects['enemy1'] = new Image();
 	allSpriteObjects['enemy1'].src = 'assets/enemy_1_animation.png';
+    
+    allSpriteObjects['enemy2'] = new Image();
+    allSpriteObjects['enemy2'].src = 'assets/enemy_suicide.png';
 
 } //end setupSpriteImageObjects
 
@@ -152,6 +155,12 @@ function setupGameVisuals() {
 		}
 	}
 
+    for (var i = 0; i < totalSuicideInvaders; i++) {
+        var suicideInvader = createInvader(2, '');
+        suicideInvader.isAlive = false;
+        allInvaders.push(suicideInvader);
+        //agv['invGroup' + i] = allInvaders[ allInvaders.length - 1].vGroup;
+    }
 
 
 } //end setupGameVisuals

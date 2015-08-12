@@ -63,7 +63,7 @@ function createPlayer(shootingDirection) {
 							this.allBullets[i].spawnAt(this.x + this.width/2 + 1 + cBulletWidth, this.y);
 							//this.counterShoot++;
 							previousTimeA = currentTime;
-							console.log('confirm right shot');
+							//console.log('confirm right shot');
 						}
 					} else if (this.shootingDirection == "left") {//spawns bullet for right player
 						if((currentTime - previousTimeB) > 500) {
@@ -71,7 +71,7 @@ function createPlayer(shootingDirection) {
 							this.allBullets[i].spawnAt(this.x - this.width/2 - 1 - cBulletWidth, this.y);
 							//this.counterShoot++;
 							previousTimeB = currentTime;
-								console.log('confirm left shot');
+                            //console.log('confirm left shot');
 						}
 					}
 				}

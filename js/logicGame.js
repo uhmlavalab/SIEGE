@@ -38,7 +38,7 @@ function logicGame() {
     
     /* Checks for endgame condition, changes to results if true */
     if(!allPlayers[0].isAlive || !allPlayers[1].isAlive) {
-		console.log(allPlayers[0].score, allPlayers[1].score);
+		//console.log(allPlayers[0].score, allPlayers[1].score);
         prepandSwitchToResult();
     } 
     
@@ -99,13 +99,13 @@ function collisionEffects(object1, object2) {
             object1.damage(1);
             object2.death();
 			object2.Owner.score++;
-            console.log(' invader hit by bullet');
+            //console.log(' invader hit by bullet');
         }
         else if(object1.type == "playerBullet" && object2.type == "invader") {
             object2.damage(1);
             object1.death();
 			object1.Owner.score++;
-            console.log(' invader hit by bullet');
+            //console.log(' invader hit by bullet');
         }
         
         /* Checks for boss */

@@ -117,6 +117,7 @@ var leaderBoard = [
 var cInvaderMoveDelayTime = 1000;
 var invaderLastMoveTime = null;
 var invaderLastShotTime = null;
+var totalSuicideInvaders = 50;
 
 
 //---------------------------------------------------------------------------------------------------------

@@ -64,12 +64,23 @@ function createInvader(invadeType, shootingDirection) {
     */
 	ent.death = function () {
 		this.isAlive = false;//set isAlive to false
-		this.direction = "none";//set direction to none
 		if(this.invaderType == 1) {//if the invader that was killed was a normal invader
-			if(Math.random() < .15) {//and if it hits the 15% chance of spawning a suicide invader
-				//spawn a suicide invader at its location
-			}
+        console.log(allInvaders);
+			//if(Math.random() < .15) {//and if it hits the 15% chance of spawning a suicide invader
+				for (var i = 0; i < allInvaders.length; i++) {
+                    if (allInvaders[i].invaderType === 2) {
+                        if (allInvaders[i].isAlive === false) {
+                            allInvaders[i].isAlive = true;
+                            allInvaders[i].x = this.x;
+                            allInvaders[i].y = this.y;
+                            allInvaders[i].direction = this.shootingDirection;
+                            allInvaders[i].spawnAt(100, 100);
+                        }
+                    }
+                }
+			//}
 		}
+        //this.direction = "none";//set direction to none
 		explodeEntity(this.vSprite);
 		//this.x = -100;
 		//this.y = -100;
@@ -185,14 +196,13 @@ function invaderMoveAI() {
     var minY = cCanvasHeight;
     for (var i = 0; i < allInvaders.length; i++) {
         var alien = allInvaders[i];
-        if (alien.isAlive === false) {
-            continue;
+        if (alien.isAlive === true) {
+            alien.y += alien.height * alien.moveDirection;
+            maxY = Math.max(maxY, alien.y);
+            minY = Math.min(minY, alien.y);
         }
-        alien.y += alien.height * alien.moveDirection;
-        maxY = Math.max(maxY, alien.y);
-        minY = Math.min(minY, alien.y);
     }
-    console.log("Min Y: " + minY + ", Max Y: " + maxY);
+    //console.log("Min Y: " + minY + ", Max Y: " + maxY);
     
     // Determines if any of the invaders are going beyond the 30px margin
     if (maxY >= cCanvasHeight - cInvaderHeight || minY <= cInvaderHeight * 1.5 ) {
