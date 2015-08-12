@@ -50,7 +50,7 @@ function createInvader(invadeType, shootingDirection) {
 		}
 		else if (this.invaderType == 2) {
 			suicideInvaderAI();
-            console.log("moving suicide");
+            //console.log("moving suicide");
 		}
 		this.moveVisualsToCoordinates();
 	};
@@ -257,7 +257,7 @@ function suicideInvaderAI() {
         var suicide = allSuicider[i];
         if (suicide.isAlive === true) {
             suicide.x += 10 * suicide.moveDirection;
-            console.log(suicide.x);
+            //console.log(suicide.x);
         }
     }
 }
