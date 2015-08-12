@@ -71,7 +71,6 @@ function createInvader(invadeType, shootingDirection) {
 				for (var i = 0; i < allSuicider.length; i++) {
                     
                     if (allSuicider[i].isAlive === false) {
-                        allSuicider[i].isAlive = true;
                         allSuicider[i].x = this.x;
                         allSuicider[i].y = this.y;
                         allSuicider[i].shootingDirection = this.shootingDirection;
@@ -81,9 +80,10 @@ function createInvader(invadeType, shootingDirection) {
                         else if (this.shootingDirection === 'right') {
                             allSuicider[i].moveDirection = 1;
                         }
+                        allSuicider[i].spawnAt(this.x, this.y);
                         allSuicider[i].moveVisualsToCoordinates();
                         createInvaderVisual(allSuicider[i]);
-                        console.log(allSuicider);
+                        //console.log(allSuicider);
                         break;
                     }
                     
