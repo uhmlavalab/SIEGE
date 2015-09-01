@@ -110,7 +110,13 @@ function collisionEffects(object1, object2) {
 
         /* Checks if player is hit by any bullet or invader */
         if(object1.type == "player" && (object2.type == "invaderBullet" || object2.type == "invader" || object2.type == "playerBullet")) {
-            object1.damage(1);
+            object1.score -= 1;
+			if(object1.score < 0) {
+				object1.score = 0;
+			}
+			if(object2.type == "playerBullet") {
+				object1.damage(1);
+			}
             if(object2.type == "invaderBullet" || object2.type == "playerBullet") {
                 object2.death();
 				if(object2.type == "playerBullet") {
@@ -119,7 +125,14 @@ function collisionEffects(object1, object2) {
             }
         }
         else if((object1.type == "invaderBullet" || object1.type == "invader" || object1.type == "playerBullet") && object2.type == "player") {
-            object2.damage(1);
+            //object2.damage(1);
+			object2.score -= 1;
+			if(object2.score < 0) {
+				object2.score = 0;
+			}
+			if(object1.type == "playerBullet") {
+				object2.damage(1);
+			}
     		if(object1.type == "invaderBullet" || object1.type == "playerBullet") {
                 object1.death();
 				if(object1.type == "playerBullet") {
@@ -227,10 +240,3 @@ function prepGameInvaderPosition() {
     }
 
 } //end prepGameInvaderPosition
-
-
-
-
-
-
-
